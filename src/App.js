@@ -172,6 +172,9 @@ const App = () => {
           {currentAccount === ""
             ? renderNotConnectedContainer()
             : renderMintUI()}
+          <div className="sub-sub-text">
+            <text>※Mint 1回につき 1weiかかります</text>
+          </div>
         </div>
         {isLoading !== "" && <div className="loading-text"> {isLoading}</div>}
         {currentNftCount !== "" && (

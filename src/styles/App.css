@@ -28,6 +28,12 @@
   color: white;
 }
 
+.sub-sub-text {
+  font-size: 14px;
+  color: white;
+  margin: 8px;
+}
+
 .loading-text {
   animation: flash 2s linear infinite;
   color: white;
