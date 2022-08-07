@@ -28,6 +28,11 @@
   color: white;
 }
 
+.loading-text {
+  animation: flash 2s linear infinite;
+  color: white;
+}
+
 .gradient-text {
   background: -webkit-linear-gradient(left, #60c657 30%, #35aee2 60%);
   background-clip: text;
@@ -52,6 +57,13 @@
   background: -webkit-linear-gradient(left, #60c657, #35aee2);
   background-size: 200% 200%;
   animation: gradient-animation 4s ease infinite;
+}
+
+.rarible-link-button {
+  background: #35aee2;
+  background-size: 200% 200%;
+  border-radius: 50px;
+  margin: 30px;
 }
 
 .mint-button {
@@ -87,6 +99,13 @@
   color: white;
   font-size: 16px;
   font-weight: bold;
+}
+
+.rarible-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
 }
 
 /* KeyFrames */
