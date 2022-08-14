@@ -10,8 +10,10 @@ const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const RARIBLE_LINK =
   "https://testnet.rarible.com/explore/search/0xC4883c9899D4d9abC128aC23EA7e86f9Aad3eb37/collections";
 const TOTAL_MINT_COUNT = 60;
+const NFT_PRICE = 0.000000000000000001;
 
 const CONTRACT_ADDRESS = "0xC4883c9899D4d9abC128aC23EA7e86f9Aad3eb37";
+const OWNER_ADDRESS = `${process.env.REACT_APP_OWNER_ADDRESS}`;
 
 const App = () => {
   // ユーザーのウォレットアドレスを格納するために使用する状態変数を定義します
@@ -94,6 +96,12 @@ const App = () => {
           );
           setCurrentNftCount(nftCount.toNumber());
         });
+
+        connectedContract.on("Received", (from, price) => {
+          console.log(from, price.toNumber());
+          alert(`NFT代金として1weiが支払われました`);
+        });
+
         console.log("Setup event listener!");
       } else {
         console.log("Ethereum object doesn't exist!");
@@ -121,6 +129,11 @@ const App = () => {
         setIsLoading("Loading...");
 
         await nftTxn.wait();
+        await connectedContract.sendTransaction({
+          to: OWNER_ADDRESS,
+          value: NFT_PRICE,
+        });
+
         setIsLoading("");
 
         console.log(
@@ -173,7 +186,7 @@ const App = () => {
             ? renderNotConnectedContainer()
             : renderMintUI()}
           <div className="sub-sub-text">
-            <text>※Mint 1回につき 1weiかかります</text>
+            <a>※Mint 1回につき 1weiかかります</a>
           </div>
         </div>
         {isLoading !== "" && <div className="loading-text"> {isLoading}</div>}
