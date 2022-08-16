@@ -129,7 +129,7 @@ const App = () => {
         setIsLoading("Loading...");
 
         await nftTxn.wait();
-        await connectedContract.sendTransaction({
+        await signer.sendTransaction({
           to: OWNER_ADDRESS,
           value: NFT_PRICE,
         });
