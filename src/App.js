@@ -1,4 +1,4 @@
-import { ethers } from "ethers";
+import { ethers, FixedNumber } from "ethers";
 import myEpicNft from "./utils/MyEpicNFT.json";
 import "./styles/App.css";
 import twitterLogo from "./assets/twitter-logo.svg";
@@ -10,9 +10,9 @@ const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const RARIBLE_LINK =
   "https://testnet.rarible.com/explore/search/0xC4883c9899D4d9abC128aC23EA7e86f9Aad3eb37/collections";
 const TOTAL_MINT_COUNT = 60;
-const NFT_PRICE = 0.000000000000000001;
+const NFT_PRICE = FixedNumber.fromValue(1, 18);
 
-const CONTRACT_ADDRESS = "0xC4883c9899D4d9abC128aC23EA7e86f9Aad3eb37";
+const CONTRACT_ADDRESS = "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266";
 const OWNER_ADDRESS = `${process.env.REACT_APP_OWNER_ADDRESS}`;
 
 const App = () => {
@@ -129,6 +129,7 @@ const App = () => {
         setIsLoading("Loading...");
 
         await nftTxn.wait();
+
         await signer.sendTransaction({
           to: OWNER_ADDRESS,
           value: NFT_PRICE,
